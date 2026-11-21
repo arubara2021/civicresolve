@@ -6,7 +6,7 @@ An AI-powered civic grievance platform built on Google Gemini. Citizens report i
 
 > Every civic app can tell you a complaint was closed. CivicResolve can tell you **whether it was actually fixed** — and it keeps that record permanently, per physical asset.
 
-**[Live Demo](https://your-deployed-url)** · **[GitHub](https://github.com/Arba2021/civicresolve)** · Built with **[Google Gemini](https://ai.google.dev/)** and **[Google Antigravity](https://antigravity.google/)**
+**[Live Demo](https://your-deployed-url)** · **[GitHub](https://github.com/arubara2021/civicresolve)** · Built with **[Google Gemini](https://ai.google.dev/)** and **[Google Antigravity](https://antigravity.google/)**
 
 ---
 
@@ -381,7 +381,7 @@ GET    /api/dashboard                        citizen + admin views
 ## Setup
 
 ```bash
-git clone https://github.com/Arba2021/civicresolve
+git clone https://github.com/arubara2021/civicresolve
 cd civicresolve
 
 # backend
@@ -487,7 +487,7 @@ Developed in Google Antigravity using agent-assisted implementation. Agent walkt
 
 ## Team
 
-Arun — [@Arba2021](https://github.com/Arba2021)
+Arun — [@arubara2021](https://github.com/arubara2021)
 
 ## License
 
