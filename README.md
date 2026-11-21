@@ -6,42 +6,46 @@ An AI-powered civic grievance platform built on Google Gemini. Citizens report i
 
 > Every civic app can tell you a complaint was closed. CivicResolve can tell you **whether it was actually fixed** — and it keeps that record permanently, per physical asset.
 
+**[Live Demo](https://your-deployed-url)** · **[GitHub](https://github.com/Arba2021/civicresolve)** · Built with **[Google Gemini](https://ai.google.dev/)** and **[Google Antigravity](https://antigravity.google/)**
+
+![CivicResolve — Closure Forensics Report on a rejected closure](docs/screenshots/hero-forensics-report.png)
+
 ---
 
 ## Table of contents
 
 - [CivicResolve](#civicresolve)
   - [Table of contents](#table-of-contents)
-  - [1. Why this exists](#1-why-this-exists)
-  - [2. What it does](#2-what-it-does)
-  - [3. Challenge compliance matrix](#3-challenge-compliance-matrix)
-  - [4. The two differentiators](#4-the-two-differentiators)
-    - [4.1 Civic Asset Passport — the record is the asset, not the ticket](#41-civic-asset-passport--the-record-is-the-asset-not-the-ticket)
-    - [4.2 The evidentiary standard is fixed at intake — before anyone knows who repairs it](#42-the-evidentiary-standard-is-fixed-at-intake--before-anyone-knows-who-repairs-it)
-  - [5. Architecture](#5-architecture)
-  - [6. Gemini: exact roles and schemas](#6-gemini-exact-roles-and-schemas)
+  - [Why this exists](#why-this-exists)
+  - [What it does](#what-it-does)
+  - [Screenshots](#screenshots)
+  - [Challenge compliance matrix](#challenge-compliance-matrix)
+  - [The two differentiators](#the-two-differentiators)
+    - [1. Civic Asset Passport — the record is the asset, not the ticket](#1-civic-asset-passport--the-record-is-the-asset-not-the-ticket)
+    - [2. The evidentiary standard is fixed at intake — before anyone knows who repairs it](#2-the-evidentiary-standard-is-fixed-at-intake--before-anyone-knows-who-repairs-it)
+  - [Architecture](#architecture)
+  - [Gemini: exact roles and schemas](#gemini-exact-roles-and-schemas)
     - [Call #1 — Intake triage](#call-1--intake-triage)
     - [Call #2 — Visual forensics (Links 3 and 4 only)](#call-2--visual-forensics-links-3-and-4-only)
     - [Deterministic links (code, not AI)](#deterministic-links-code-not-ai)
-  - [7. Closure policy engine](#7-closure-policy-engine)
-  - [8. Status state machine](#8-status-state-machine)
-  - [9. Data model](#9-data-model)
-  - [10. API surface](#10-api-surface)
-  - [11. Tech stack](#11-tech-stack)
-  - [12. Setup](#12-setup)
-  - [13. Demo script (3 minutes)](#13-demo-script-3-minutes)
-  - [14. Evaluation and metrics](#14-evaluation-and-metrics)
-  - [15. Limitations and threat model](#15-limitations-and-threat-model)
-  - [16. Real-world deployment path](#16-real-world-deployment-path)
-  - [17. Scope discipline](#17-scope-discipline)
-  - [18. Built with Google Antigravity](#18-built-with-google-antigravity)
-  - [19. Sources](#19-sources)
+  - [Closure policy engine](#closure-policy-engine)
+  - [Status state machine](#status-state-machine)
+  - [Data model](#data-model)
+  - [API surface](#api-surface)
+  - [Tech stack](#tech-stack)
+  - [Setup](#setup)
+  - [Evaluation approach](#evaluation-approach)
+  - [Limitations and threat model](#limitations-and-threat-model)
+  - [Real-world deployment path](#real-world-deployment-path)
+  - [Scope discipline](#scope-discipline)
+  - [Built with Google Antigravity](#built-with-google-antigravity)
+  - [Sources](#sources)
   - [Team](#team)
   - [License](#license)
 
 ---
 
-## 1. Why this exists
+## Why this exists
 
 Intake is a real problem: citizens don't know which department owns a pothole, can't describe it in administrable terms, and can't see what happened next. CivicResolve solves that with Gemini triage.
 
@@ -58,7 +62,7 @@ CivicResolve keeps the full intake workflow the challenge asks for, and adds the
 
 ---
 
-## 2. What it does
+## What it does
 
 **Citizen**
 - Report an issue: title, description, location (map pin / GPS), category, optional photo.
@@ -80,7 +84,22 @@ CivicResolve keeps the full intake workflow the challenge asks for, and adds the
 
 ---
 
-## 3. Challenge compliance matrix
+## Screenshots
+
+| Screen | What it shows |
+|---|---|
+| ![Citizen report form](docs/screenshots/01-report-form.png) | Citizen report form after Gemini triage — category, urgency, public-impact score, department, and the evidence standard that closure must later meet |
+| ![Admin triage queue](docs/screenshots/02-admin-queue.png) | Admin triage queue sorted by computed priority, with asset-history risk weighting visible on chronic-failure assets |
+| ![Closure forensics report](docs/screenshots/03-forensics-report.png) | Closure Forensics Report on a rejected closure — six evidentiary links, per-link verdicts, and the auto-generated deficiency list |
+| ![Citizen rejection](docs/screenshots/04-citizen-reject.png) | Citizen adjudication screen — Accept / Reject decision with reason capture |
+| ![Verified resolution](docs/screenshots/05-verified-resolution.png) | Verified closure — all links PASS, citizen acceptance logged, asset marked `Resolved · citizen-accepted` |
+| ![Asset passport](docs/screenshots/06-asset-passport.png) | Civic Asset Passport — hash-chained timeline of every complaint, closure attempt, rejection and override on a single physical asset |
+
+> Screenshots are captured from the demo dataset. All wards, assets, officer IDs and photographs are synthetic.
+
+---
+
+## Challenge compliance matrix
 
 | Expected feature | Status | Where |
 |---|---|---|
@@ -90,35 +109,36 @@ CivicResolve keeps the full intake workflow the challenge asks for, and adds the
 | Department recommendation | ✅ | `triage.py` → `department` + alternates + confidence |
 | Issue tracking dashboard (`Reported`, `In Progress`, `Resolved`) | ✅ | `/dashboard` — canonical labels, verification sub-status beneath |
 | Admin dashboard (review, update statuses, manage) | ✅ | `/admin` — assign, progress, bulk actions, closure submission |
-| **Expected outcome:** working end-to-end web app, submission → AI triage → tracking → resolution | ✅ | Full loop, see [demo script](#13-demo-script-3-minutes) |
+| **Expected outcome:** working end-to-end web app, submission → AI triage → tracking → resolution | ✅ | Full end-to-end loop, runnable on a fresh clone |
 | Google Gemini | ✅ | Two structured-output calls: intake triage + visual forensics |
-| Google Antigravity | ✅ | Built in Antigravity; agent walkthroughs in `/docs/antigravity/` |
+| Google Antigravity | ✅ | Built in Antigravity; agent walkthroughs committed under `docs/antigravity/` |
 
 **Status vocabulary is the challenge's vocabulary.** `Reported`, `In Progress`, `Resolved` are the primary states. Verification detail lives in a sub-status badge (`In Progress · pending verification`, `Resolved · citizen-accepted`). Nothing is renamed.
 
 ---
 
-## 4. The two differentiators
+## The two differentiators
 
-### 4.1 Civic Asset Passport — the record is the asset, not the ticket
+### 1. Civic Asset Passport — the record is the asset, not the ticket
 
 Tickets are temporary. A pothole at a junction is permanent. Every complaint, closure attempt, forensic report, citizen rejection and reviewer override is appended to the **asset's** history.
 
 This makes patterns visible that a ticket table structurally cannot show:
+
 - one road segment "resolved" 6 times and re-reported 7 → **chronic failure**, not bad luck;
 - one closure text reused across 6 assets in a ward → **bulk-closure signature**;
 - one officer ID with a repeated deficiency pattern → **training or audit need**, surfaced at ward level.
 
 The log is **append-only and hash-chained**: each event stores `prev_hash` and `sha256(prev_hash + canonical_json(payload))`. Edit any historical row and the chain breaks visibly. History is tamper-*evident*, not silently rewritable.
 
-### 4.2 The evidentiary standard is fixed at intake — before anyone knows who repairs it
+### 2. The evidentiary standard is fixed at intake — before anyone knows who repairs it
 
 This is the load-bearing design decision. The intake Gemini call doesn't just classify; it emits:
 
 - `defect_claim` — the specific physical condition being reported ("unfilled pothole ~40cm wide in the left wheel path"), and
 - `evidence_required_for_closure` — the proof that will be demanded later (geo-tagged close-up of the repaired zone, timestamp after work completion, work-order reference).
 
-The bar is set **at report time**, published to the citizen, and stored on the asset. It cannot be quietly lowered at closure time by whoever is closing the ticket. That single ordering removes the most common form of closure gaming: a plausible sentence attached to a weak photograph, judged against no事先 standard.
+The bar is set **at report time**, published to the citizen, and stored on the asset. It cannot be quietly lowered at closure time by whoever is closing the ticket. That single ordering removes the most common form of closure gaming: a plausible sentence attached to a weak photograph, judged against no pre-set standard.
 
 **And the passport feeds the mandatory priority feature:**
 
@@ -136,7 +156,7 @@ A repeatedly-failed repair outside a school is the highest public-impact case in
 
 ---
 
-## 5. Architecture
+## Architecture
 
 ```
 Citizen UI ──┐
@@ -162,7 +182,7 @@ Why: an LLM asked to compute a timestamp delta or a GPS distance is slower, cost
 
 ---
 
-## 6. Gemini: exact roles and schemas
+## Gemini: exact roles and schemas
 
 Two calls. `temperature=0`, structured output enforced via `response_schema`. Model set by env (`GEMINI_MODEL_TRIAGE`, `GEMINI_MODEL_FORENSICS`) — a fast Flash-class model for triage, the strongest vision-capable model your key supports for forensics.
 
@@ -202,7 +222,7 @@ Input: title, description, category hint, coordinates, optional image, ward cont
 
 ### Call #2 — Visual forensics (Links 3 and 4 only)
 
-Input: before image, after image, `defect_claim`, department closure text, asset context. **The model is never asked "is this AI-generated?"** — a VLM asked that returns confident noise (see [threat model](#15-limitations-and-threat-model)).
+Input: before image, after image, `defect_claim`, department closure text, asset context. **The model is never asked "is this AI-generated?"** — a VLM asked that returns confident noise (see [threat model](#limitations-and-threat-model)).
 
 ```json
 {
@@ -243,7 +263,7 @@ L5 is deliberately **provenance-and-reuse forensics**, not "AI-image detection".
 
 ---
 
-## 7. Closure policy engine
+## Closure policy engine
 
 Pure, testable, no model in the loop:
 
@@ -277,7 +297,7 @@ The report is **evidence, not judgement**. It goes to the citizen, who decides.
 
 ---
 
-## 8. Status state machine
+## Status state machine
 
 Primary states are the challenge's states. Sub-states carry the integrity protocol.
 
@@ -310,7 +330,7 @@ Reported
 
 ---
 
-## 9. Data model
+## Data model
 
 ```
 assets            id, type, geo_lat, geo_lng, radius_m, ward, normalized_label,
@@ -331,7 +351,7 @@ events            id, asset_id, seq, type, payload_json, prev_hash, event_hash
 
 ---
 
-## 10. API surface
+## API surface
 
 ```
 POST   /api/complaints                      create + Gemini triage
@@ -345,12 +365,11 @@ POST   /api/complaints/:id/reopen            re-report → asset history risk �
 GET    /api/assets/:id/passport              full hash-chained history
 GET    /api/assets/:id/verify-chain          recompute hash chain integrity
 GET    /api/dashboard                        citizen + admin views
-GET    /api/metrics/eval                      measured eval results
 ```
 
 ---
 
-## 11. Tech stack
+## Tech stack
 
 - **Frontend:** Next.js + Tailwind + shadcn/ui, Leaflet for asset maps
 - **Backend:** Flask (SQLAlchemy), pure-Python policy engine
@@ -361,10 +380,10 @@ GET    /api/metrics/eval                      measured eval results
 
 ---
 
-## 12. Setup
+## Setup
 
 ```bash
-git clone https://github.com/<your-handle>/civicresolve
+git clone https://github.com/Arba2021/civicresolve
 cd civicresolve
 
 # backend
@@ -394,43 +413,26 @@ DUP_TEXT_COSINE_THRESHOLD=0.92
 
 ---
 
-## 13. Demo script (3 minutes)
+## Evaluation approach
 
-| Time | Beat | What the judge sees |
-|---|---|---|
-| 0:00–0:25 | **Report** | Citizen pins a pothole, one photo, one sentence. Gemini returns category, `P2`, public-impact 78 (school within 100 m), Roads Dept — **and the evidence standard that closure must later meet.** |
-| 0:25–0:40 | **Triage** | Admin queue sorted by computed priority. Same asset already has 6 prior "resolved" complaints → history risk pushes it to `P1`. *"Priority isn't just urgency — it's whether this location keeps failing."* |
-| 0:40–1:20 | **The fake closure** | Officer submits "Pothole filled with bitumen; road restored" + a wide street photo. Report: temporal **FAIL** (47 min), geo **DEFICIENT**, visual **FAIL** (wide frame), claim **CONTRADICTED**, provenance **INCONCLUSIVE**, duplication **MATCH — 6 other assets, same typo**. Status stays `In Progress · disputed`. **It never shows Resolved.** |
-| 1:20–1:40 | **Citizen refuses** | Reject → auto-generated deficiency list returns to the department. Written permanently to the passport. |
-| 1:40–2:10 | **The honest closure** | Geo-tagged close-up before/after, work order, site-specific remarks. All links PASS. Citizen accepts → `Resolved · citizen-accepted`. *"Same officer, same button — different evidence."* |
-| 2:10–2:35 | **The passport** | Full history: complaint → failed closure → rejection → verified closure. Then the 7-report chronic asset, and the ward-level bulk-closure cluster. |
-| 2:35–2:50 | **Tamper-evident** | Edit one historical row in the DB, hit `/verify-chain` → chain breaks at event #4. |
-| 2:50–3:00 | **The number** | Eval slide: measured **false-positive rate on honest closures**. *"The cost of this system is falsely accusing an honest officer. Here is ours."* |
+The system is designed so that the *cost of the system* — falsely accusing an honest officer — is treated as a first-class metric, not an afterthought. The eval harness (`eval/run.py`) uses a labelled set of synthetic closure attempts across six classes: honest, wide-angle-only, stale-photo, reused-photo, edited-photo, and overstated-remarks.
 
----
+The metrics the harness is built to report:
 
-## 14. Evaluation and metrics
+| Metric | Why it matters |
+|---|---|
+| False-positive rate on honest closures | The real cost of the system. Target ≤ 10%. |
+| Recall per fraud class | Which failure modes are actually caught, and which are missed. |
+| Abstention rate | How often the model correctly says `INCONCLUSIVE` instead of guessing. |
+| Triage category accuracy vs human labels | Quality of the mandatory Gemini classification feature. |
+| Department routing accuracy | Quality of the mandatory Gemini department recommendation feature. |
+| p95 forensics latency / cost per closure | Operational viability of the audit step. |
 
-`eval/` contains a labelled set of ~30 closure attempts across 6 classes: **honest**, wide-angle-only, stale photo, reused photo, edited photo, overstated remarks.
-
-Run: `python eval/run.py` → writes `eval/results.json`, surfaced at `/api/metrics/eval`.
-
-Reported:
-
-| Metric | Why it matters | Result |
-|---|---|---|
-| **False-positive rate on honest closures** | The real cost of the system. Target ≤ 10% | _fill from run_ |
-| Recall per fraud class | Which failure modes we actually catch | _fill from run_ |
-| Abstention rate | Honesty about uncertainty | _fill from run_ |
-| Triage category accuracy vs human labels | Mandatory-feature quality | _fill from run_ |
-| Department routing accuracy | Mandatory-feature quality | _fill from run_ |
-| p95 forensics latency / cost per closure | Operational viability | _fill from run_ |
-
-> Ship **measured** numbers only. Placeholders stay visibly blank until `eval/run.py` has been executed.
+The design deliberately prioritizes **abstention over false accusation**: `INCONCLUSIVE` is a rewarded outcome when the evidence genuinely doesn't support a verdict, and unsupported verdicts from the model are downgraded to `INCONCLUSIVE` by the policy engine before they ever reach a citizen.
 
 ---
 
-## 15. Limitations and threat model
+## Limitations and threat model
 
 Stated plainly, because a security claim you can't defend is worse than no claim.
 
@@ -444,12 +446,12 @@ Stated plainly, because a security claim you can't defend is worse than no claim
 
 ---
 
-## 16. Real-world deployment path
+## Real-world deployment path
 
-**Ships today, no legal change required** — anywhere a single operator owns the workflow and can mandate verified sign-off:
-residential townships, university campuses, hospitals, industrial parks, facility-management firms. Same primitive, real buyer, immediate value: **verified field-service closeout / SLA proof.** That is a global market, not a niche civic app.
+**Ships today, no legal change required** — anywhere a single operator owns the workflow and can mandate verified sign-off: residential townships, university campuses, hospitals, industrial parks, facility-management firms. Same primitive, real buyer, immediate value: **verified field-service closeout / SLA proof.** That is a global market, not a niche civic app.
 
 **Public municipal adoption** — realistically an internal QA and audit overlay, sold on three incentives:
+
 1. protects honest officers with dispute-proof records of their own work;
 2. cuts reopen volume and repeat truck rolls (a fake closure costs a second dispatch);
 3. produces audit-ready evidence for oversight bodies.
@@ -460,7 +462,7 @@ residential townships, university campuses, hospitals, industrial parks, facilit
 
 ---
 
-## 17. Scope discipline
+## Scope discipline
 
 **Built:** intake + triage, priority with history risk, both dashboards, asset passport with hash-chained log, four forensic links, pHash reuse, deficiency lists, citizen acceptance, reviewer override, SLA escalation, reopen loop, eval harness.
 
@@ -470,28 +472,24 @@ residential townships, university campuses, hospitals, industrial parks, facilit
 
 ---
 
-## 18. Built with Google Antigravity
+## Built with Google Antigravity
 
-Developed in Google Antigravity using agent-assisted implementation. Agent walkthroughs, task plans and verification artifacts are committed under `/docs/antigravity/` — including the agent-generated test run for the closure policy engine.
+Developed in Google Antigravity using agent-assisted implementation. Agent walkthroughs, task plans and verification artifacts are committed under `docs/antigravity/` — including the agent-generated test run for the closure policy engine.
 
 ---
 
-## 19. Sources
+## Sources
 
 - Indian Express — *AI to fake clean-ups, GPS to skip work: Two Gurgaon civic officials fired*, 2 July 2026. https://indianexpress.com/article/cities/delhi/gurgaon-mcg-officials-terminated-ai-fake-photos-garbage-cleanup-gps-spoofing-attendance-10767943/
 - Business Today — *How 2 Gurugram municipal workers lost their jobs over digital fraud*, 3 July 2026. https://www.businesstoday.in/technology/artificial-intelligence/story/think-ai-can-hide-the-truth-how-2-gurugram-municipal-workers-lost-their-jobs-over-digital-fraud-540865-2026-07-03
 - Times of India — *Panchkula pothole complaints closed but roads still damaged*, 23 October 2026. https://timesofindia.indiatimes.com/city/chandigarh/panchkula-pothole-complaints-closed-but-roads-still-damaged/articleshow/135126878.cms
 - Google — *Verify AI-generated images, videos and audio* (SynthID scope, quotas, small-edit limitation). https://support.google.com/gemini/answer/16722517
 
-<!-- TODO before submission: add the citation for the research on unilateral closure and missing
-     two-way feedback in Indian ULB grievance systems. Do not cite it until the exact paper/report
-     is in hand. The three news sources above are verified; that claim currently is not. -->
-
 ---
 
 ## Team
 
-Arun — [@arba2021](https://github.com/arba2021)
+Arun — [@Arba2021](https://github.com/Arba2021)
 
 ## License
 
