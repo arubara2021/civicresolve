@@ -8,8 +8,6 @@ An AI-powered civic grievance platform built on Google Gemini. Citizens report i
 
 **[Live Demo](https://your-deployed-url)** · **[GitHub](https://github.com/Arba2021/civicresolve)** · Built with **[Google Gemini](https://ai.google.dev/)** and **[Google Antigravity](https://antigravity.google/)**
 
-![CivicResolve — Closure Forensics Report on a rejected closure](docs/screenshots/hero-forensics-report.png)
-
 ---
 
 ## Table of contents
@@ -86,16 +84,16 @@ CivicResolve keeps the full intake workflow the challenge asks for, and adds the
 
 ## Screenshots
 
+*(To be populated with application screenshots upon final deployment)*
+
 | Screen | What it shows |
 |---|---|
-| ![Citizen report form](docs/screenshots/01-report-form.png) | Citizen report form after Gemini triage — category, urgency, public-impact score, department, and the evidence standard that closure must later meet |
-| ![Admin triage queue](docs/screenshots/02-admin-queue.png) | Admin triage queue sorted by computed priority, with asset-history risk weighting visible on chronic-failure assets |
-| ![Closure forensics report](docs/screenshots/03-forensics-report.png) | Closure Forensics Report on a rejected closure — six evidentiary links, per-link verdicts, and the auto-generated deficiency list |
-| ![Citizen rejection](docs/screenshots/04-citizen-reject.png) | Citizen adjudication screen — Accept / Reject decision with reason capture |
-| ![Verified resolution](docs/screenshots/05-verified-resolution.png) | Verified closure — all links PASS, citizen acceptance logged, asset marked `Resolved · citizen-accepted` |
-| ![Asset passport](docs/screenshots/06-asset-passport.png) | Civic Asset Passport — hash-chained timeline of every complaint, closure attempt, rejection and override on a single physical asset |
-
-> Screenshots are captured from the demo dataset. All wards, assets, officer IDs and photographs are synthetic.
+| **Citizen report form** | Citizen report form after Gemini triage — category, urgency, public-impact score, department, and the evidence standard that closure must later meet |
+| **Admin triage queue** | Admin triage queue sorted by computed priority, with asset-history risk weighting visible on chronic-failure assets |
+| **Closure forensics report** | Closure Forensics Report on a rejected closure — six evidentiary links, per-link verdicts, and the auto-generated deficiency list |
+| **Citizen rejection** | Citizen adjudication screen — Accept / Reject decision with reason capture |
+| **Verified resolution** | Verified closure — all links PASS, citizen acceptance logged, asset marked `Resolved · citizen-accepted` |
+| **Asset passport** | Civic Asset Passport — hash-chained timeline of every complaint, closure attempt, rejection and override on a single physical asset |
 
 ---
 
