@@ -1,0 +1,49 @@
+# CivicResolve backend dependencies.
+#
+# Version policy: floors are the oldest releases verified to expose the APIs this
+# project uses; ceilings exclude the next major to prevent silent breakage. After
+# the first successful install, run `pip freeze > requirements.lock.txt` and commit
+# the lock file. Deploy from the lock, develop from this file.
+#
+# Target interpreter: Python 3.12. Compiled wheels (pillow, scikit-learn) are the
+# reason ranges are used here rather than exact pins.
+
+# Web layer
+fastapi>=0.115.6,<0.116
+uvicorn[standard]>=0.34.0,<0.35
+python-multipart>=0.0.20,<0.1
+sse-starlette>=2.1.3,<3
+
+# Validation and configuration
+pydantic>=2.10.4,<3
+pydantic-settings>=2.7.0,<3
+
+# Persistence. The asyncio extra pulls greenlet, which SQLAlchemy async requires.
+sqlalchemy[asyncio]>=2.0.36,<2.1
+aiosqlite>=0.20.0,<0.21
+
+# Model access. The unified Google Gen AI SDK exposes the async surface used by
+# app.agents.gemini_client. Older google-generativeai is intentionally not used.
+google-genai>=1.0.0,<2
+
+# Observability and resilience
+structlog>=24.4.0,<25
+tenacity>=9.0.0,<10
+orjson>=3.10.12,<4
+
+# Evidence forensics. Deterministic links only; none of these call a model.
+pillow>=11.0.0,<12
+exifread>=3.0.0,<4
+piexif>=1.1.3,<2
+imagehash>=4.3.1,<5
+scikit-learn>=1.6.0,<2
+
+# Scheduling for citizen-response SLA escalation.
+apscheduler>=3.11.0,<4
+
+# Development and verification tooling. The production image installs this file
+# and simply never invokes these entry points.
+pytest>=8.3.4,<9
+pytest-asyncio>=0.25.0,<0.26
+httpx>=0.28.1,<0.29
+ruff>=0.8.4,<0.9

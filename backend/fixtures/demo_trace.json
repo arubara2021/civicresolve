@@ -1,0 +1,206 @@
+{
+    "meta": {
+        "title": "CivicResolve worked example, Acts 1 to 7",
+        "synthetic": true,
+        "note": "All wards, assets, officer IDs and photographs are fabricated. No real municipal records."
+    },
+    "ward": "WARD-12",
+    "asset": {
+        "id": "AST-0042",
+        "asset_type": "road_segment",
+        "label": "MG Road service lane, left wheel path near school gate",
+        "lat": 28.45950,
+        "lng": 77.02660,
+        "radius_m": 50.0,
+        "age_days": 210,
+        "defect_claim": "unfilled pothole approx 40cm wide in left wheel path, broken edge",
+        "evidence_standard": [
+            "geo_tagged_closeup_of_repaired_zone",
+            "capture_timestamp_after_work_completion",
+            "work_order_reference"
+        ],
+        "min_repair_minutes": 120
+    },
+    "closure_remarks": {
+        "reused": "Pothole filled with bitumen; road restored to motarable condition.",
+        "honest": "Left wheel path pothole at school gate cut and filled with bitumen mix, compacted, edge sealed - WO/4471"
+    },
+    "history": [
+        {
+            "complaint_id": "WRD-1042",
+            "reporter_id": "CIT-101",
+            "officer_id": "OFF-117",
+            "title": "Pothole in left wheel path",
+            "description": "Recurring pothole near the school gate. Two-wheelers swerve into traffic.",
+            "impact_score": 74,
+            "reopen_count": 1,
+            "reported_days_ago": 190,
+            "resolved_days_ago": 186,
+            "attempts": [
+                {
+                    "id": "ATT-0001",
+                    "number": 1,
+                    "chain_sufficient": false,
+                    "decision": "reject",
+                    "reason": "Road still broken at the reported location.",
+                    "submitted_after_report_minutes": 52,
+                    "decided_after_submit_minutes": 90,
+                    "work_order_reference": null
+                },
+                {
+                    "id": "ATT-0002",
+                    "number": 2,
+                    "chain_sufficient": true,
+                    "decision": "accept",
+                    "reason": null,
+                    "submitted_after_report_minutes": 2600,
+                    "decided_after_submit_minutes": 120,
+                    "work_order_reference": "WO/3310"
+                }
+            ]
+        },
+        {
+            "complaint_id": "WRD-1044",
+            "reporter_id": "CIT-102",
+            "officer_id": "OFF-117",
+            "title": "Pothole outside school gate",
+            "description": "Same pothole reopened after the last repair.",
+            "impact_score": 76,
+            "reopen_count": 1,
+            "reported_days_ago": 160,
+            "resolved_days_ago": 157,
+            "attempts": [
+                {
+                    "id": "ATT-0003",
+                    "number": 1,
+                    "chain_sufficient": true,
+                    "decision": "accept",
+                    "reason": null,
+                    "submitted_after_report_minutes": 2400,
+                    "decided_after_submit_minutes": 150,
+                    "work_order_reference": "WO/3388"
+                }
+            ]
+        },
+        {
+            "complaint_id": "WRD-1051",
+            "reporter_id": "CIT-103",
+            "officer_id": "OFF-117",
+            "title": "Broken wheel path near school",
+            "description": "Patch has broken up again within weeks.",
+            "impact_score": 75,
+            "reopen_count": 1,
+            "reported_days_ago": 128,
+            "resolved_days_ago": 125,
+            "attempts": [
+                {
+                    "id": "ATT-0004",
+                    "number": 1,
+                    "chain_sufficient": true,
+                    "decision": "accept",
+                    "reason": null,
+                    "submitted_after_report_minutes": 2500,
+                    "decided_after_submit_minutes": 180,
+                    "work_order_reference": "WO/3455"
+                }
+            ]
+        },
+        {
+            "complaint_id": "WRD-1055",
+            "reporter_id": "CIT-104",
+            "officer_id": "OFF-117",
+            "title": "Pothole again at school gate",
+            "description": "Fourth report at this exact spot.",
+            "impact_score": 77,
+            "reopen_count": 1,
+            "reported_days_ago": 96,
+            "resolved_days_ago": 93,
+            "attempts": [
+                {
+                    "id": "ATT-0005",
+                    "number": 1,
+                    "chain_sufficient": true,
+                    "decision": "accept",
+                    "reason": null,
+                    "submitted_after_report_minutes": 2300,
+                    "decided_after_submit_minutes": 200,
+                    "work_order_reference": "WO/3521"
+                }
+            ]
+        },
+        {
+            "complaint_id": "WRD-1060",
+            "reporter_id": "CIT-105",
+            "officer_id": "OFF-117",
+            "title": "Wheel path pothole, fifth report",
+            "description": "Children walking to school have to step into the carriageway.",
+            "impact_score": 78,
+            "reopen_count": 1,
+            "reported_days_ago": 62,
+            "resolved_days_ago": 59,
+            "attempts": [
+                {
+                    "id": "ATT-0006",
+                    "number": 1,
+                    "chain_sufficient": true,
+                    "decision": "accept",
+                    "reason": null,
+                    "submitted_after_report_minutes": 2450,
+                    "decided_after_submit_minutes": 160,
+                    "work_order_reference": "WO/3602"
+                }
+            ]
+        },
+        {
+            "complaint_id": "WRD-1063",
+            "reporter_id": "CIT-106",
+            "officer_id": "OFF-117",
+            "title": "Pothole near school gate, sixth report",
+            "description": "Repair did not hold. Same location, same failure.",
+            "impact_score": 78,
+            "reopen_count": 0,
+            "reported_days_ago": 30,
+            "resolved_days_ago": 27,
+            "attempts": [
+                {
+                    "id": "ATT-0007",
+                    "number": 1,
+                    "chain_sufficient": true,
+                    "decision": "accept",
+                    "reason": null,
+                    "submitted_after_report_minutes": 2600,
+                    "decided_after_submit_minutes": 140,
+                    "work_order_reference": "WO/3677"
+                }
+            ]
+        }
+    ],
+    "live_complaint": {
+        "id": "WRD-1071",
+        "reporter_id": "CIT-201",
+        "officer_id": "OFF-117",
+        "title": "Pothole in left wheel path near school gate",
+        "description": "Two scooter riders almost fell this morning. Active injury risk.",
+        "created_minutes_ago": 180,
+        "assessed_urgency": "P2",
+        "urgency": "P1",
+        "impact_score": 78,
+        "history_risk": 100.0,
+        "priority_score": 79.9,
+        "department": "roads_maintenance"
+    },
+    "fake_submission": {
+        "work_completed_after_report_minutes": 47,
+        "work_order_reference": null,
+        "scene": "fake_after"
+    },
+    "honest_submission": {
+        "work_order_reference": "WO/4471",
+        "scene": "honest_after"
+    },
+    "sequences": {
+        "WRD": 1071,
+        "AST": 42,
+        "ATT": 7
+    }
+}

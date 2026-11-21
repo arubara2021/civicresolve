@@ -1,0 +1,279 @@
+{
+    "meta": {
+        "title": "CivicResolve labelled evaluation set",
+        "synthetic": true,
+        "note": "All scenes are procedurally generated. No real municipal records or photographs.",
+        "classes": [
+            "honest",
+            "wide_angle",
+            "stale",
+            "reused",
+            "edited",
+            "overstated"
+        ],
+        "asset": {
+            "lat": 28.4595,
+            "lng": 77.0266,
+            "min_repair_minutes": 120
+        },
+        "complaint_age_minutes": 240
+    },
+    "closure_cases": [
+        {
+            "id": "H01",
+            "label": "honest",
+            "patched": true,
+            "close_up": true,
+            "gps_offset_m": 5,
+            "captured_after_report_min": 200,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "SUPPORTED",
+            "expect_sufficient": true
+        },
+        {
+            "id": "H02",
+            "label": "honest",
+            "patched": true,
+            "close_up": true,
+            "gps_offset_m": 12,
+            "captured_after_report_min": 230,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "SUPPORTED",
+            "expect_sufficient": true
+        },
+        {
+            "id": "H03",
+            "label": "honest",
+            "patched": true,
+            "close_up": true,
+            "gps_offset_m": 30,
+            "captured_after_report_min": 180,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "SUPPORTED",
+            "expect_sufficient": true
+        },
+        {
+            "id": "H04",
+            "label": "honest",
+            "patched": true,
+            "close_up": true,
+            "gps_offset_m": 0,
+            "captured_after_report_min": 235,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "SUPPORTED",
+            "expect_sufficient": true
+        },
+        {
+            "id": "H05",
+            "label": "honest",
+            "patched": true,
+            "close_up": true,
+            "gps_offset_m": 45,
+            "captured_after_report_min": 150,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "SUPPORTED",
+            "expect_sufficient": true
+        },
+        {
+            "id": "W01",
+            "label": "wide_angle",
+            "patched": true,
+            "close_up": false,
+            "gps_offset_m": 8,
+            "captured_after_report_min": 210,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "INCONCLUSIVE",
+            "expect_sufficient": false
+        },
+        {
+            "id": "W02",
+            "label": "wide_angle",
+            "patched": false,
+            "close_up": false,
+            "gps_offset_m": 10,
+            "captured_after_report_min": 220,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "CONTRADICTED",
+            "expect_sufficient": false
+        },
+        {
+            "id": "W03",
+            "label": "wide_angle",
+            "patched": true,
+            "close_up": false,
+            "gps_offset_m": 20,
+            "captured_after_report_min": 205,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "INCONCLUSIVE",
+            "expect_sufficient": false
+        },
+        {
+            "id": "S01",
+            "label": "stale",
+            "patched": true,
+            "close_up": true,
+            "gps_offset_m": 6,
+            "captured_after_report_min": -60,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "SUPPORTED",
+            "expect_sufficient": false
+        },
+        {
+            "id": "S02",
+            "label": "stale",
+            "patched": true,
+            "close_up": true,
+            "gps_offset_m": 7,
+            "captured_after_report_min": 47,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "SUPPORTED",
+            "expect_sufficient": false
+        },
+        {
+            "id": "R01",
+            "label": "reused",
+            "patched": false,
+            "close_up": false,
+            "gps_offset_m": 9,
+            "captured_after_report_min": 215,
+            "exif": true,
+            "software": null,
+            "remarks": "reused",
+            "work_order": true,
+            "visible_support": "CONTRADICTED",
+            "reuse_prior": true,
+            "expect_sufficient": false
+        },
+        {
+            "id": "R02",
+            "label": "reused",
+            "patched": false,
+            "close_up": false,
+            "gps_offset_m": 11,
+            "captured_after_report_min": 225,
+            "exif": true,
+            "software": null,
+            "remarks": "reused",
+            "work_order": true,
+            "visible_support": "CONTRADICTED",
+            "reuse_prior": true,
+            "expect_sufficient": false
+        },
+        {
+            "id": "E01",
+            "label": "edited",
+            "patched": true,
+            "close_up": true,
+            "gps_offset_m": 5,
+            "captured_after_report_min": 210,
+            "exif": true,
+            "software": "Adobe Photoshop 25.0",
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "SUPPORTED",
+            "expect_sufficient": false
+        },
+        {
+            "id": "O01",
+            "label": "overstated",
+            "patched": false,
+            "close_up": true,
+            "gps_offset_m": 6,
+            "captured_after_report_min": 215,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "CONTRADICTED",
+            "expect_sufficient": false
+        },
+        {
+            "id": "O02",
+            "label": "overstated",
+            "patched": true,
+            "close_up": true,
+            "gps_offset_m": 8,
+            "captured_after_report_min": 220,
+            "exif": true,
+            "software": null,
+            "remarks": "unique",
+            "work_order": true,
+            "visible_support": "PARTIAL",
+            "expect_sufficient": false
+        }
+    ],
+    "triage_cases": [
+        {
+            "id": "T01",
+            "title": "Deep pothole outside school gate",
+            "description": "Two scooter riders almost fell this morning near the school entrance.",
+            "category": "pothole",
+            "department": "roads_maintenance"
+        },
+        {
+            "id": "T02",
+            "title": "Garbage bin overflowing for a week",
+            "description": "Waste spilling onto the footpath beside the market, stray dogs scattering it.",
+            "category": "garbage_overflow",
+            "department": "solid_waste"
+        },
+        {
+            "id": "T03",
+            "title": "Streetlight not working",
+            "description": "The pole light outside house 42 has been dark for ten nights, the lane is pitch black.",
+            "category": "streetlight_failure",
+            "department": "electrical_streetlighting"
+        },
+        {
+            "id": "T04",
+            "title": "Water leaking from main pipe",
+            "description": "Continuous water flow from a broken supply line, the road is flooded.",
+            "category": "water_leakage",
+            "department": "water_sewerage"
+        },
+        {
+            "id": "T05",
+            "title": "Storm drain blocked with silt",
+            "description": "Rainwater stands for hours because the drain mouth is choked with debris.",
+            "category": "drainage",
+            "department": "storm_drainage"
+        },
+        {
+            "id": "T06",
+            "title": "Road surface broken up",
+            "description": "A long stretch of the carriageway has crumbled, gravel loose across both lanes.",
+            "category": "road_damage",
+            "department": "public_works"
+        }
+    ]
+}

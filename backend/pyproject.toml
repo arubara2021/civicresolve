@@ -1,0 +1,55 @@
+# Tooling configuration only. This project is deployed as an application, not
+# published as a distribution, so no [project] or [build-system] table is declared.
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["app", "tests", "scripts"]
+extend-exclude = [".venv", "uploads", "assets/seed"]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "F",      # pyflakes
+    "I",      # import ordering
+    "UP",     # pyupgrade
+    "B",      # bugbear
+    "SIM",    # simplify
+    "C4",     # comprehensions
+    "ASYNC",  # async correctness
+    "RUF",    # ruff-specific
+]
+ignore = [
+    "B008",   # FastAPI Depends() in defaults is the intended idiom.
+    "RUF012", # Mutable class defaults on SQLAlchemy declarative models.
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E501"]
+"scripts/*" = ["E501"]
+"eval/*" = ["E402", "E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+# Allows `import app...` when pytest is invoked from the backend directory
+# without installing the project as a package.
+pythonpath = ["."]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "-q --strict-markers --strict-config"
+filterwarnings = [
+    "ignore::DeprecationWarning:apscheduler.*",
+    "ignore::DeprecationWarning:pydantic.*",
+]
+markers = [
+    "integration: exercises the full HTTP surface; requires a seeded database",
+    "live_model: performs a real Gemini call; excluded from the default run",
+]

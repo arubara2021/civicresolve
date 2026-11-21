@@ -1,0 +1,41 @@
+﻿# Dependencies
+**/.venv/
+**/node_modules/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+**/.mypy_cache/
+
+# Build artifacts
+**/.next/
+**/dist/
+**/build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Secrets & data
+**/.env
+**/.env.local
+**/*.db
+**/*.sqlite
+**/uploads/
+**/civicresolve.db
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Python lock
+**/requirements.lock.txt
+
+# Eval scratch
+**/eval/.scratch/
+
+# Keep these tracked
+!**/.gitkeep

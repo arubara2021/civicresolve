@@ -1,0 +1,400 @@
+{
+  "generated_at": "2026-11-21T10:15:29.715526+00:00",
+  "mode": "offline_stub",
+  "visual_links_measured": false,
+  "scope_note": "Deterministic links measured. Visual links 3 and 4 are SIMULATED from each label's declared visible support, so their recall is not a model measurement.",
+  "cost_per_closure": null,
+  "cost_note": "AgentCallRecord does not carry token counts; cost is not measured.",
+  "summary": {
+    "cases": 15,
+    "honest_cases": 5,
+    "false_positives": 0,
+    "false_positive_ids": [],
+    "false_positive_rate_on_honest": 0.0,
+    "recall_per_fraud_class": {
+      "edited": {
+        "cases": 1,
+        "caught": 0,
+        "recall": 0.0,
+        "missed_ids": [
+          "E01"
+        ]
+      },
+      "overstated": {
+        "cases": 2,
+        "caught": 2,
+        "recall": 1.0,
+        "missed_ids": []
+      },
+      "reused": {
+        "cases": 2,
+        "caught": 2,
+        "recall": 1.0,
+        "missed_ids": []
+      },
+      "stale": {
+        "cases": 2,
+        "caught": 2,
+        "recall": 1.0,
+        "missed_ids": []
+      },
+      "wide_angle": {
+        "cases": 3,
+        "caught": 3,
+        "recall": 1.0,
+        "missed_ids": []
+      }
+    },
+    "abstention_rate": 0.1333,
+    "degraded_rate": 0.0,
+    "p95_pipeline_latency_s": 0.141,
+    "median_pipeline_latency_s": 0.078
+  },
+  "triage": {
+    "measured": false,
+    "reason": "offline mode stubs triage; category and routing accuracy are not measured",
+    "category_accuracy": null,
+    "department_accuracy": null,
+    "cases": []
+  },
+  "cases": [
+    {
+      "id": "H01",
+      "label": "honest",
+      "expect_sufficient": true,
+      "sufficient": true,
+      "blocked": false,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "PASS",
+        "claim_evidence": "PASS",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [],
+      "latency_s": 0.141
+    },
+    {
+      "id": "H02",
+      "label": "honest",
+      "expect_sufficient": true,
+      "sufficient": true,
+      "blocked": false,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "PASS",
+        "claim_evidence": "PASS",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [],
+      "latency_s": 0.109
+    },
+    {
+      "id": "H03",
+      "label": "honest",
+      "expect_sufficient": true,
+      "sufficient": true,
+      "blocked": false,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "PASS",
+        "claim_evidence": "PASS",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [],
+      "latency_s": 0.078
+    },
+    {
+      "id": "H04",
+      "label": "honest",
+      "expect_sufficient": true,
+      "sufficient": true,
+      "blocked": false,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "PASS",
+        "claim_evidence": "PASS",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [],
+      "latency_s": 0.047
+    },
+    {
+      "id": "H05",
+      "label": "honest",
+      "expect_sufficient": true,
+      "sufficient": true,
+      "blocked": false,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "PASS",
+        "claim_evidence": "PASS",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [],
+      "latency_s": 0.063
+    },
+    {
+      "id": "W01",
+      "label": "wide_angle",
+      "expect_sufficient": false,
+      "sufficient": false,
+      "blocked": true,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": true,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "FAIL",
+        "claim_evidence": "INCONCLUSIVE",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [
+        "required_links_failed:visual_sufficiency",
+        "required_links_inconclusive:claim_evidence"
+      ],
+      "latency_s": 0.062
+    },
+    {
+      "id": "W02",
+      "label": "wide_angle",
+      "expect_sufficient": false,
+      "sufficient": false,
+      "blocked": true,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "FAIL",
+        "claim_evidence": "FAIL",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [
+        "required_links_failed:claim_evidence,visual_sufficiency"
+      ],
+      "latency_s": 0.344
+    },
+    {
+      "id": "W03",
+      "label": "wide_angle",
+      "expect_sufficient": false,
+      "sufficient": false,
+      "blocked": true,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": true,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "FAIL",
+        "claim_evidence": "INCONCLUSIVE",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [
+        "required_links_failed:visual_sufficiency",
+        "required_links_inconclusive:claim_evidence"
+      ],
+      "latency_s": 0.078
+    },
+    {
+      "id": "S01",
+      "label": "stale",
+      "expect_sufficient": false,
+      "sufficient": false,
+      "blocked": true,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "FAIL",
+        "geospatial": "PASS",
+        "visual_sufficiency": "PASS",
+        "claim_evidence": "PASS",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [
+        "required_links_failed:temporal"
+      ],
+      "latency_s": 0.094
+    },
+    {
+      "id": "S02",
+      "label": "stale",
+      "expect_sufficient": false,
+      "sufficient": false,
+      "blocked": true,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "FAIL",
+        "geospatial": "PASS",
+        "visual_sufficiency": "PASS",
+        "claim_evidence": "PASS",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [
+        "required_links_failed:temporal"
+      ],
+      "latency_s": 0.109
+    },
+    {
+      "id": "R01",
+      "label": "reused",
+      "expect_sufficient": false,
+      "sufficient": false,
+      "blocked": true,
+      "correct": true,
+      "reuse_detected": true,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "FAIL",
+        "claim_evidence": "FAIL",
+        "provenance": "FAIL",
+        "duplication": "FAIL"
+      },
+      "blocking_reasons": [
+        "reused_photograph",
+        "required_links_failed:claim_evidence,duplication,visual_sufficiency"
+      ],
+      "latency_s": 0.078
+    },
+    {
+      "id": "R02",
+      "label": "reused",
+      "expect_sufficient": false,
+      "sufficient": false,
+      "blocked": true,
+      "correct": true,
+      "reuse_detected": true,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "FAIL",
+        "claim_evidence": "FAIL",
+        "provenance": "FAIL",
+        "duplication": "FAIL"
+      },
+      "blocking_reasons": [
+        "reused_photograph",
+        "required_links_failed:claim_evidence,duplication,visual_sufficiency"
+      ],
+      "latency_s": 0.094
+    },
+    {
+      "id": "E01",
+      "label": "edited",
+      "expect_sufficient": false,
+      "sufficient": true,
+      "blocked": false,
+      "correct": false,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "PASS",
+        "claim_evidence": "PASS",
+        "provenance": "DEFICIENT",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [],
+      "latency_s": 0.078
+    },
+    {
+      "id": "O01",
+      "label": "overstated",
+      "expect_sufficient": false,
+      "sufficient": false,
+      "blocked": true,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "FAIL",
+        "claim_evidence": "FAIL",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [
+        "required_links_failed:claim_evidence,visual_sufficiency"
+      ],
+      "latency_s": 0.063
+    },
+    {
+      "id": "O02",
+      "label": "overstated",
+      "expect_sufficient": false,
+      "sufficient": false,
+      "blocked": true,
+      "correct": true,
+      "reuse_detected": false,
+      "degraded": false,
+      "abstained": false,
+      "verdicts": {
+        "temporal": "PASS",
+        "geospatial": "PASS",
+        "visual_sufficiency": "FAIL",
+        "claim_evidence": "DEFICIENT",
+        "provenance": "PASS",
+        "duplication": "PASS"
+      },
+      "blocking_reasons": [
+        "required_links_failed:visual_sufficiency",
+        "required_links_deficient:claim_evidence"
+      ],
+      "latency_s": 0.063
+    }
+  ]
+}
